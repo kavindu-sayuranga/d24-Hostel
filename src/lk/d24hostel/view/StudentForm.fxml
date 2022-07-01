@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="1041.0" prefWidth="1819.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.d24hostel.controller.StudentFormController">
+   <children>
+      <Label layoutX="146.0" layoutY="142.0" text="Student ID" textFill="#26059d">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="81.0" layoutX="298.0" layoutY="119.0" stroke="#26059d" strokeType="INSIDE" strokeWidth="2.0" width="294.0" />
+      <JFXTextField fx:id="txtStudentId" layoutX="319.0" layoutY="129.0" prefHeight="55.0" prefWidth="252.0" promptText="ST-0000">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXTextField>
+      <Label layoutX="731.0" layoutY="142.0" text="Name" textFill="#26059d">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="81.0" layoutX="883.0" layoutY="119.0" stroke="#26059d" strokeType="INSIDE" strokeWidth="2.0" width="294.0" />
+      <JFXTextField fx:id="txtStudentName" layoutX="904.0" layoutY="129.0" prefHeight="55.0" prefWidth="252.0" promptText="Name">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXTextField>
+      <Label layoutX="1324.0" layoutY="142.0" text="Address" textFill="#26059d">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="81.0" layoutX="1476.0" layoutY="119.0" stroke="#26059d" strokeType="INSIDE" strokeWidth="2.0" width="294.0" />
+      <JFXTextField fx:id="txtStudentAddress" layoutX="1497.0" layoutY="129.0" prefHeight="55.0" prefWidth="252.0" promptText="Address">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXTextField>
+      <Label layoutX="146.0" layoutY="299.0" text="Contact No" textFill="#26059d">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="81.0" layoutX="298.0" layoutY="276.0" stroke="#26059d" strokeType="INSIDE" strokeWidth="2.0" width="294.0" />
+      <JFXTextField fx:id="txtStudentContact" layoutX="319.0" layoutY="286.0" prefHeight="55.0" prefWidth="252.0" promptText="Contact No">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXTextField>
+      <Label layoutX="731.0" layoutY="296.0" text="DOB" textFill="#26059d">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="81.0" layoutX="883.0" layoutY="273.0" stroke="#26059d" strokeType="INSIDE" strokeWidth="2.0" width="294.0" />
+      <Label layoutX="1324.0" layoutY="291.0" text="Gender" textFill="#26059d">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="81.0" layoutX="1476.0" layoutY="268.0" stroke="#26059d" strokeType="INSIDE" strokeWidth="2.0" width="294.0" />
+      <JFXDatePicker fx:id="DOB" defaultColor="#26059d" layoutX="902.0" layoutY="287.0" prefHeight="50.0" prefWidth="259.0" promptText="DOB" />
+      <JFXComboBox fx:id="cmbGender" layoutX="1494.0" layoutY="283.0" prefHeight="50.0" prefWidth="255.0" promptText="Male / Female or Other" />
+      <JFXButton fx:id="btnAdd" layoutX="738.0" layoutY="417.0" onAction="#btnAddStudentOnAction" prefHeight="73.0" prefWidth="220.0" style="-fx-background-color: #0ae415;" text="Add Student" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="1060.0" layoutY="417.0" onAction="#btnClearOnAction" prefHeight="73.0" prefWidth="220.0" style="-fx-background-color: red;" text="Clear" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="tblStudent" layoutX="352.0" layoutY="523.0" prefHeight="468.0" prefWidth="1276.0">
+        <columns>
+          <TableColumn fx:id="colStudentId" prefWidth="174.0" text="Student ID" />
+          <TableColumn fx:id="colStudentName" prefWidth="253.0" text="Name" />
+            <TableColumn fx:id="colStudentAddress" prefWidth="225.66668701171875" text="Address" />
+            <TableColumn fx:id="colContact" prefWidth="230.666748046875" text="Contact No" />
+            <TableColumn fx:id="colDOB" prefWidth="201.6666259765625" text="DOB" />
+            <TableColumn fx:id="colGender" prefWidth="194.3333740234375" text="Gender" />
+        </columns>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#menuUpdateOnAction" text="Update" />
+                  <MenuItem mnemonicParsing="false" onAction="#menuDeleteOnAction" text="Delete" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
+      </TableView>
+   </children>
+</AnchorPane>

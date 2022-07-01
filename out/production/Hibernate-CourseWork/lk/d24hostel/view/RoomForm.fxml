@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="1041.0" prefWidth="1819.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.d24hostel.controller.RoomFormController">
+   <children>
+      <Label layoutX="146.0" layoutY="142.0" text="Room Type" textFill="#26059d">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="81.0" layoutX="298.0" layoutY="119.0" stroke="#26059d" strokeType="INSIDE" strokeWidth="2.0" width="294.0" />
+      <JFXComboBox fx:id="cmbRoomType" layoutX="315.0" layoutY="130.0" prefHeight="55.0" prefWidth="252.0" promptText="Room Type" />
+      <Label layoutX="146.0" layoutY="304.0" text="Room ID" textFill="#26059d">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="81.0" layoutX="298.0" layoutY="270.0" stroke="#26059d" strokeType="INSIDE" strokeWidth="2.0" width="294.0" />
+      <JFXComboBox fx:id="cmbRoomId" layoutX="319.0" layoutY="282.0" prefHeight="55.0" prefWidth="252.0" promptText="Room ID" />
+      <Label layoutX="648.0" layoutY="142.0" text="or">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="recType" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="81.0" layoutX="780.0" layoutY="108.0" stroke="#26059d" strokeType="INSIDE" strokeWidth="2.0" width="294.0" />
+      <JFXTextField fx:id="txtRoomType" layoutX="798.0" layoutY="118.0" prefHeight="55.0" prefWidth="252.0" promptText="Type">
+         <font>
+            <Font size="20.0" />
+         </font></JFXTextField>
+      <Label layoutX="1135.0" layoutY="143.0" text="KeyMoney" textFill="#26059d">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="81.0" layoutX="1273.0" layoutY="108.0" stroke="#26059d" strokeType="INSIDE" strokeWidth="2.0" width="294.0" />
+      <JFXTextField fx:id="txtKeymoney" layoutX="1291.0" layoutY="119.0" prefHeight="55.0" prefWidth="252.0" promptText="Type">
+         <font>
+            <Font size="20.0" />
+         </font></JFXTextField>
+      <JFXButton fx:id="btnAddRoomType" layoutX="1600.0" layoutY="116.0" onAction="#btnAddRoomTypeOnAction" prefHeight="61.0" prefWidth="174.0" style="-fx-background-color: #1763ab;" text="Add Room Type" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="648.0" layoutY="303.0" text="or">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="recId" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="81.0" layoutX="780.0" layoutY="269.0" stroke="#26059d" strokeType="INSIDE" strokeWidth="2.0" width="294.0" />
+      <JFXTextField fx:id="txtRoomId" layoutX="798.0" layoutY="279.0" prefHeight="55.0" prefWidth="252.0" promptText="RM-0000">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton fx:id="btnAddRoomId" layoutX="1130.0" layoutY="278.0" onAction="#btnAddRoomIdOnAction" prefHeight="61.0" prefWidth="174.0" style="-fx-background-color: #1763ab;" text="Add Room ID" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="155.0" layoutY="462.0" text="Qty" textFill="#26059d">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="81.0" layoutX="301.0" layoutY="427.0" stroke="#26059d" strokeType="INSIDE" strokeWidth="2.0" width="294.0" />
+      <JFXTextField fx:id="txtQty" layoutX="319.0" layoutY="438.0" prefHeight="55.0" prefWidth="252.0" promptText="Qty">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXTextField>
+      <TableView fx:id="tblRoom" layoutX="727.0" layoutY="558.0" prefHeight="434.0" prefWidth="1049.0">
+        <columns>
+          <TableColumn fx:id="colRoomId" prefWidth="251.3333740234375" text="Room ID" />
+          <TableColumn fx:id="colRoomType" prefWidth="294.3333740234375" text="Room Type" />
+            <TableColumn fx:id="colKeymoney" prefWidth="269.6666259765625" text="KeyMoney" />
+            <TableColumn fx:id="colQty" prefWidth="259.3333740234375" text="Qty" />
+        </columns>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#menuUpdateOnAction" text="Update" />
+                  <MenuItem mnemonicParsing="false" onAction="#menuDeleteOnAction" text="Delete" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
+      </TableView>
+      <JFXButton fx:id="btnAdd" layoutX="1321.0" layoutY="447.0" onAction="#btnAddRoomOnAction" prefHeight="73.0" prefWidth="220.0" style="-fx-background-color: #0ae415;" text="Add Room" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="1553.0" layoutY="447.0" onAction="#btnClearOnAction" prefHeight="73.0" prefWidth="220.0" style="-fx-background-color: red;" text="Clear" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </JFXButton>
+      <JFXCheckBox fx:id="checkType" layoutX="776.0" layoutY="63.0" text="Add New Room Type" textFill="#26059d" underline="true">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXCheckBox>
+      <JFXCheckBox fx:id="checkId" layoutX="777.0" layoutY="231.0" text="Add New Room ID" textFill="#26059d" underline="true">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXCheckBox>
+   </children>
+</AnchorPane>
