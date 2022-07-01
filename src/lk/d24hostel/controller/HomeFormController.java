@@ -30,6 +30,7 @@ public class HomeFormController {
     public JFXButton btnManageRevDetails;
     public JFXButton btnLogout;
     public AnchorPane icnSideAnchorPane;
+    public Label lblAdmin;
 
     String userType;
 
@@ -90,5 +91,12 @@ public class HomeFormController {
     public void setUI(String URI) throws IOException {
         MainAnchorPane.getChildren().clear();
         MainAnchorPane.getChildren().add(FXMLLoader.load(getClass().getResource("../view/" + URI + ".fxml")));
+    }
+
+    String userName;
+
+    public void getAllData(String text,String password) {
+        userName=text;
+        lblAdmin.setText(userName);
     }
 }

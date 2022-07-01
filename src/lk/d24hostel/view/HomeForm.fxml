@@ -105,5 +105,15 @@
          </children>
       </AnchorPane>
       <Line endX="1273.0001220703125" endY="-0.9999809265136719" layoutX="655.0" layoutY="50.0" startX="-656.0000610351562" startY="-0.9999809265136719" stroke="#26059d" strokeWidth="3.0" />
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="894.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assests/images/outline3.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblAdmin" layoutX="932.0" layoutY="10.0" text="Admin" textFill="#26059d">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
