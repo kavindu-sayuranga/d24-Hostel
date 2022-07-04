@@ -23,12 +23,11 @@ public class FactoryConfiguration {
         p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("hibernate.properties"));
         configuration.setProperties(p);
 
-        // configuration.addAnnotatedClass();
+
         configuration.addAnnotatedClass(Reserved.class);
         configuration.addAnnotatedClass(Student.class);
         configuration.addAnnotatedClass(Room.class);
         configuration.addAnnotatedClass(User.class);
-
 
         sessionFactory = configuration.buildSessionFactory();
 

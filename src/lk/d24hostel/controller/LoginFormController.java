@@ -3,6 +3,7 @@ package lk.d24hostel.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,8 +11,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.d24hostel.bo.BOFactory;
 import lk.d24hostel.bo.custom.UserBO;
 import lk.d24hostel.bo.custom.impl.UserBOImpl;
 import lk.d24hostel.dto.UserDTO;
@@ -28,7 +31,9 @@ public class LoginFormController {
     public JFXButton btnLog;
     public AnchorPane apnMain;
 
-    UserBO userBO = new UserBOImpl();
+    private final UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.USER);
+    public FontAwesomeIconView icnEye;
+    public JFXTextField txtPassword;
 
     LinkedHashMap<JFXTextField, Pattern> map = new LinkedHashMap<>();
     Pattern usernamePattern = Pattern.compile("^[A-z0-9]{3,10}$");
@@ -36,10 +41,10 @@ public class LoginFormController {
     Pattern passwordPattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,}$");
 
     public void initialize(){
-        pwdPassword.setVisible(false);
+        txtPassword.setVisible(false);
 
         //copy values for passwordField
-        pwdPassword.textProperty().addListener((observable, oldValue, newValue) -> {
+        txtPassword.textProperty().addListener((observable, oldValue, newValue) -> {
             pwdPassword.setText(newValue);
         });
 
@@ -101,6 +106,24 @@ public class LoginFormController {
             } else if (response instanceof Boolean) {
 
             }
+        }
+    }
+
+    public void eyeClickOnAction(MouseEvent mouseEvent) {
+        if(icnEye.getGlyphName().equals("EYE_SLASH")){ // must show password
+            icnEye.setGlyphName("EYE");
+
+            txtPassword.setText(pwdPassword.getText()); //copy PwdPassword data to  txtPW
+            pwdPassword.setVisible(false);  //PWField hidden
+            txtPassword.setVisible(true);   //txtField Shown
+
+        }else if(icnEye.getGlyphName().equals("EYE")){  // must hide  password
+            icnEye.setGlyphName("EYE_SLASH");
+
+            pwdPassword.setText(txtPassword.getText());
+            txtPassword.setVisible(false); //txtField hide
+            pwdPassword.setVisible(true);  //PWField shown
+
         }
     }
 }

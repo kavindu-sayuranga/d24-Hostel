@@ -1,9 +1,13 @@
 package lk.d24hostel.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,6 +17,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import lk.d24hostel.bo.BOFactory;
+import lk.d24hostel.bo.custom.UserBO;
+import lk.d24hostel.dto.UserDTO;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -31,13 +38,27 @@ public class HomeFormController {
     public JFXButton btnLogout;
     public AnchorPane icnSideAnchorPane;
     public Label lblAdmin;
+    public JFXPasswordField pwdPassword;
+    public AnchorPane txtDownPane;
+    public JFXTextField txtUserName;
+    public FontAwesomeIconView icnEye;
+    public JFXTextField txtPassword;
+    public JFXButton btnUpdate;
+    public JFXTextField txtOldPassword;
 
     String userType;
+    private final UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.USER);
 
     public void initialize() throws IOException {
-        NameSideAnchorPane.setVisible(false);
-        setUI("DashBoardForm");
         loadDateAndTime();
+        txtDownPane.setVisible(false);
+        NameSideAnchorPane.setVisible(false);
+
+        txtPassword.textProperty().addListener((observable, oldValue, newValue) -> {
+            pwdPassword.setText(newValue);
+        });
+
+        txtUserName.setEditable(false);
 
     }
 
@@ -58,26 +79,31 @@ public class HomeFormController {
     }
 
     public void btnButtonOnAction(MouseEvent mouseEvent) throws IOException {
-        Object button = mouseEvent.getSource();
-        if(button instanceof JFXButton){
-            JFXButton jfxButton = (JFXButton) button;
-            if (jfxButton.getId().equals("ManageRoomButton")){
-                setUI("RoomForm");
-            }else if (jfxButton.getId().equals("RegisterStudentButton")){
-                setUI("StudentForm");
-            }else if (jfxButton.getId().equals("ManageStudentButton")){
-                setUI("StudentRegistationForm");
-            }else if (jfxButton.getId().equals("LogOutButton")){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/LoginForm.fxml"));
-                Parent parent= loader.load();
-                Stage stage =new Stage(StageStyle.DECORATED);
-                stage.setTitle("Log Out");
-                stage.setScene(new Scene(parent));
-                stage.show();
 
-                Stage stage1 = (Stage) btnManageRooms.getScene().getWindow();
-                stage1.close();
+        Object o = mouseEvent.getSource();
+
+        if (o instanceof JFXButton){
+            JFXButton button= (JFXButton) o;
+
+            if(button.getId().equals("DashBoardImage")){
+                setUI("StudentRegistationForm");
+
+            }if(button.getId().equals("ManageRoomButton")){
+                setUI("RoomForm");
+
+            }if(button.getId().equals("ManageStudentButton")){
+                setUI("StudentRegistationForm");
+
+            }if(button.getId().equals("RegisterStudentButton")){
+                setUI("StudentForm");
+
+            }if(button.getId().equals("ReservationButton")){
+                setUI("ReservationDetailForm");
+
+            }if(button.getId().equals("LogOutButton")){
+                setUI("LoginForm");
             }
+
         }
     }
 
@@ -94,9 +120,71 @@ public class HomeFormController {
     }
 
     String userName;
+    String pas;
 
     public void getAllData(String text,String password) {
         userName=text;
         lblAdmin.setText(userName);
+        txtUserName.setText(lblAdmin.getText());
+
+        pas=password;
+    }
+
+    public void eyeClickOnAction(MouseEvent mouseEvent) {
+        if (icnEye.getGlyphName().equals("EYE_SLASH")) { // must show password
+            icnEye.setGlyphName("EYE");
+
+            txtPassword.setText(pwdPassword.getText()); //copy PwdPassword data to  txtPW
+            pwdPassword.setVisible(false);  //PWField hidden
+            txtPassword.setVisible(true);   //txtField Shown
+
+        } else if (icnEye.getGlyphName().equals("EYE")) {  // must hide  password
+            icnEye.setGlyphName("EYE_SLASH");
+
+            pwdPassword.setText(txtPassword.getText());
+            txtPassword.setVisible(false); //txtField hide
+            pwdPassword.setVisible(true);  //PWField shown
+
+        }
+    }
+
+    public void btnUpdateOnAction(ActionEvent actionEvent) throws IOException {
+        for (UserDTO userDTO : userBO.getAllUser()) {
+
+            if(txtUserName.getText().equals(userDTO.getUserName()) && txtOldPassword.getText().equals(userDTO.getPassword())){
+
+                System.out.println(userDTO.getUserId()+" - "+userDTO.getName()+" - "+userDTO.getUserName() +" - "+userDTO.getPassword());
+
+                userBO.updateUser(new UserDTO(
+                        userDTO.getUserId(),
+                        userDTO.getName(),
+                        userDTO.getUserName(),
+                        pwdPassword.getText()
+                ));
+
+                pwdPassword.clear();
+                txtPassword.clear();
+
+            }
+        }
+    }
+
+    public void btnSearchOnAction(ActionEvent actionEvent) {
+        txtOldPassword.setText(pas);
+    }
+
+    public void upDownClickOnAction(MouseEvent mouseEvent) throws IOException {
+        txtDownPane.setVisible(true);
+
+        for (UserDTO userDTO : userBO.getAllUser()) {
+
+            if(txtUserName.getText().equals(userDTO.getUserName()) ){
+
+                txtOldPassword.setText(userDTO.getPassword());
+            }
+        }
+    }
+
+    public void downPaneCloseOnAction(MouseEvent mouseEvent) {txtDownPane.setVisible(false);
     }
 }

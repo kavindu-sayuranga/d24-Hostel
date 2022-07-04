@@ -1,5 +1,6 @@
 package lk.d24hostel.bo.custom;
 
+import lk.d24hostel.bo.SuperBO;
 import lk.d24hostel.dto.CustomDTO;
 import lk.d24hostel.dto.ReservedDTO;
 import lk.d24hostel.dto.RoomDTO;
@@ -9,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface ReserveDetailBO extends SuperBO{
+public interface ReserveDetailBO extends SuperBO {
 
     ArrayList<CustomDTO> getAllReservationDetails() throws IOException;
     ArrayList<RoomDTO> getAllRoom() throws IOException;

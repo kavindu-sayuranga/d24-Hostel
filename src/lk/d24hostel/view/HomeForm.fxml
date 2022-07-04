@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -38,9 +41,14 @@
                   <Font name="System Bold" size="26.0" />
                </font>
             </Text>
+            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="1002.0" layoutY="12.0" onMouseClicked="#upDownClickOnAction" pickOnBounds="true">
+               <image>
+                  <Image url="@assests/images/downPoint.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="MainAnchorPane" layoutX="102.0" layoutY="50.0" prefHeight="1041.0" prefWidth="1819.0" style="-fx-background-color: #ffffff;" />
+      <AnchorPane fx:id="MainAnchorPane" layoutX="102.0" layoutY="50.0" onMouseClicked="#downPaneCloseOnAction" prefHeight="1041.0" prefWidth="1819.0" style="-fx-background-color: #ffffff;" />
       <AnchorPane fx:id="NameSideAnchorPane" layoutX="103.0" layoutY="50.0" onMouseExited="#NameSideOnAction" prefHeight="1043.0" prefWidth="333.0" style="-fx-background-color: white;">
          <children>
             <JFXButton id="ManageRoomButton" fx:id="btnManageRooms" layoutX="1.0" layoutY="128.0" onMouseClicked="#btnButtonOnAction" prefHeight="80.0" prefWidth="329.0" styleClass="menuItem" text="Manage Rooms">
@@ -58,7 +66,7 @@
                   <Font size="21.0" />
                </font>
             </JFXButton>
-            <JFXButton id="ReportsButton" fx:id="btnManageRevDetails" layoutX="1.0" layoutY="367.0" onMouseClicked="#btnButtonOnAction" prefHeight="80.0" prefWidth="331.0" styleClass="menuItem" text="Manage Reservation Details">
+            <JFXButton id="ReservationButton" fx:id="btnManageRevDetails" layoutX="1.0" layoutY="367.0" onMouseClicked="#btnButtonOnAction" prefHeight="80.0" prefWidth="331.0" styleClass="menuItem" text="Manage Reservation Details">
                <font>
                   <Font size="21.0" />
                </font>
@@ -72,7 +80,7 @@
       </AnchorPane>
       <AnchorPane fx:id="icnSideAnchorPane" layoutX="3.0" layoutY="50.0" onMouseEntered="#iconSideOnAction" prefHeight="1045.0" prefWidth="104.0" style="-fx-background-color: white;">
          <children>
-            <ImageView fitHeight="51.0" fitWidth="50.0" layoutX="22.0" layoutY="35.0" onMouseClicked="#imgDashBoardOnAction" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="DashBoardImage" fitHeight="51.0" fitWidth="50.0" layoutX="22.0" layoutY="35.0" onMouseClicked="#imgDashBoardOnAction" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@assests/images/dashboard.png" />
                </image>
@@ -115,5 +123,23 @@
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
+      <AnchorPane fx:id="txtDownPane" layoutX="777.0" layoutY="50.0" prefHeight="475.0" prefWidth="355.0" style="-fx-background-color: ad97ff;">
+         <children>
+            <JFXTextField fx:id="txtUserName" focusColor="#2f1515" labelFloat="true" layoutX="72.0" layoutY="53.0" prefHeight="47.0" prefWidth="249.0" promptText="Username" unFocusColor="#4059a9" />
+            <JFXPasswordField fx:id="pwdPassword" labelFloat="true" layoutX="60.0" layoutY="294.0" prefHeight="48.0" prefWidth="240.0" promptText="Password" />
+            <FontAwesomeIconView fx:id="icnEye" glyphName="EYE_SLASH" layoutY="111.0" onMouseClicked="#eyeClickOnAction" size="26" x="310.0" y="225.0" />
+            <JFXTextField fx:id="txtPassword" labelFloat="true" layoutX="60.0" layoutY="294.0" prefHeight="48.0" prefWidth="240.0" promptText="Password" unFocusColor="#152246" />
+            <ImageView fitHeight="36.0" fitWidth="69.0" layoutX="26.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assests/images/outline3.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="btnUpdate" layoutX="115.0" layoutY="401.0" onAction="#btnUpdateOnAction" prefHeight="36.0" prefWidth="141.0" style="-fx-background-color: #26059d; -fx-text-fill: #ffffff;" text="U P D A T E " textFill="WHITE" />
+            <JFXTextField fx:id="txtOldPassword" focusColor="BLACK" labelFloat="true" layoutX="71.0" layoutY="136.0" prefHeight="46.0" prefWidth="249.0" promptText="old Password" unFocusColor="#4059a9" />
+            <JFXButton layoutX="110.0" layoutY="220.0" onAction="#btnSearchOnAction" prefHeight="36.0" prefWidth="141.0" style="-fx-background-color: #26059d; -fx-text-fill: #ffffff;" text="S E A R C H " textFill="WHITE" />
+            <FontAwesomeIconView glyphName="KEY" layoutX="37.0" layoutY="172.0" size="23" />
+            <FontAwesomeIconView glyphName="KEY" layoutX="36.0" layoutY="332.0" size="23" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
